@@ -43,12 +43,13 @@ try:
  # streamlit.error()
   #streamlit.write('The user entered ', fruit_choice)
 
-streamlit.header("This fruit load list contains:")
-
 def get_fruit_load_list():
   with my_cnx.cursor() as my_cur:
+    my_cur.execute("use warehouse pc_rivery_wh")
     my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
     return my_cur.fetchall()
+
+streamlit.header("This fruit load list contains:")
 
 # Add a button to load the fruit
 if streamlit.button('Get Fruit Load List'):
